@@ -1,0 +1,124 @@
+### Git의 세 가지 관리 영역
+
+Working Directory - 개발자가 실제로 작업하는 영역
+
+Staging Area - 수정 이력을 기록할 파일을 대기 시키는 장소, Git이 관리하는 영역
+
+Repository - Staging Area의 대기중인 파일들의 수정 이력이 최종적으로 기록되는 장소, Git이 관리하는 영역
+
+Working Directory 내의 문서들의 3가지 상태
+- untracked file : 새로 만들어진 파일, 추적되지 않는 상태
+- unmodified file : 추적 중인 파일, 수정 사항이 없는 상태
+- modified file : 추적 중인 파일, 수정 사항이 감지된 상태
+
+이 중, Git은 modified file을 Staging Area로 파일들을 추가한다
+
+Commit하면 최종적으로 파일이 Repository에 저장(수정)된다
+
+$ git status
+깃 프로젝트 상태를 확인하는 깃 명령어
+
+$ git add
+워킹 디렉터리 내 문서를 스테이징 영역에 추가하는 깃 명령어
+
+$ git commit
+스테이징 영역 내에 대기 중인 문서를 리포지토리에 추가하는 깃 명령어
+shift + i, shift + :, wq
+
+$ git log
+커밋한 수정 이력을 확인하는 깃 명령어
+
+$ touch text1.txt
+파일 생성하는 리눅스 명령어
+
+$ git add .
+
+$ git commit -m ""
+
+### .gitignore
+깃 프로젝트 내 문서 중 수정 이력에서 제외하고 싶은 문서가 있다면 이를 추적 대상에서 완전히
+제외시킬 수 있다.
+
+$ nano .gitignore
+에디터 인터페이스 리눅스 명령어
+
+### Commit 이력 살펴보기
+커밋 해시, HEAD 참조자 브랜치명
+작업자
+날짜
+커밋 코멘트
+
+$ git log -p (patch)
+커밋의 변경사항까지 함께 출력하는 옵션
+
+$ git log -p -1
+
+$ git log --oneline
+각 커밋을 요약해 한 줄 씩 출력하는 옵션
+
+$ git checkout 커밋해시
+문서 내용을 특정 커밋의 내용으로 되돌리는 깃 명령어
+
+$ git reflog
+HEAD 포인터의 참조 이력을 출력하는 깃 명령어
+
+### 커밋할 생각이 없는데 스테이징 해버렸다
+1. 실수로 git add 명령 수행 후, git reset 명령어를 입력하면 스테이징 영역에 올라간 파일을
+초기화(워킹 디렉터리로 되돌리기)할 수 있다
+2. 실수로 git commit 명령을 수행해서 잘못된 커밋 이력이 추가된 경우, git reset + 커밋 해시를
+함께 입력하면 커밋 되돌리기가 수행된다
+
+$ git reset  (기본값은 --mixed)
+3가지 옵션 :
+--soft
+--mixed
+--hard
+
+$ git revert 해시~로 부터
+특정 커밋의 수정 사항을 되돌리되, 이 수정 사항도 이력으로 남기는 명령어다
+해시 부분 입력 주의
+
+### 브랜치
+기존 저장소에서 분기된 저장소의 복사본
+본 프로젝트 코드와는 별개로 독립적으로 개발을 진행할 수 있도록 하는 것이 브랜치의 사용 목적
+
+$ git branch
+현재 브랜치 목록을 볼 수 있는 깃 명령어
+*master <- 현재 위치한 브랜치
+
+$ git branch 브랜치 이름
+새로운 브랜치를 생성하는 깃 명령어
+
+$ git checkout 브랜치 이름
+작업 중인 브랜치를 변경하는 깃 명령어
+
+$ git merge 브랜치 이름
+현재 브랜치에 다른 브랜치의 내용을 병합하는 깃 명령어
+
+$ git branch -d 브랜치 이름
+입력한 브랜치를 삭제한다
+
+### GitHub
+
+|----------------------로컬 영역--------------------------|	|--온라인 상의 원격 저장소--|
+Working Directory -> Staging Area -> Repository -> GitHub remote repository
+
+$ git remote -v
+현재 깃 프로젝트에 등록된 원격저장소를 확인하는 깃 명령어
+
+$ git remote add 원격저장소이름 원격저장소주소
+현재 깃 프로젝트에 원격 저장소를 등록하고, 여기에 이름(별칭)을 붙이는 깃 명령어
+
+$ git push
+로컬 저장소의 내용을 원격 저장소에 공유할 때 사용하는 깃 명령어
+
+$ git push -u origin master
+
+$ git pull
+원격 저장소의 내용을 로컬 저장소로 가져와 자동 병합하는 깃 명령어
+
+$ cd ..
+상위 폴더로 이동
+
+$ git clone 깃허브주소(복제해올 원격 주소)
+깃허브에서 로컬저장소로 복제해온다
