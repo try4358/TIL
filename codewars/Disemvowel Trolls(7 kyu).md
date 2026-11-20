@@ -11,7 +11,7 @@ For example, the string "This website is for losers LOL!" would become "Ths wbst
 
 Note: for this kata y isn't considered a vowel.
 
-## 풀제 풀이
+## 문제 풀이
 제목의 disemvowel의 뜻은 모음을 제거한다는 뜻이다.
 
 영어의 모음은 a e i o u 5가지 이므로, 주어진 문자열 str의 요소를 for문으로 방문하여
